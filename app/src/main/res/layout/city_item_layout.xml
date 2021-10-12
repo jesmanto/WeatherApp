@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="city"
+            type="com.example.weatherapp.model.CityWeatherReport" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:onClick="@{viewClickListener}"
+            android:padding="20dp"
+            android:background="@drawable/curved_background"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:elevation="1dp">
+
+            <ImageView
+                android:id="@+id/weather_state_icon_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_baseline_wb_sunny_24"
+                android:background="@drawable/img_bg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:imageUrl="@{city.weatherIcon}"/>
+
+            <TextView
+                android:id="@+id/city_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{city.city}"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@id/weather_state_icon_iv"
+                app:layout_constraintTop_toTopOf="@id/weather_state_icon_iv"
+                tools:text="New York" />
+
+            <TextView
+                android:id="@+id/country_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{city.country}"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@id/city_tv"
+                app:layout_constraintTop_toBottomOf="@id/city_tv"
+                tools:text="Nigeria" />
+
+            <TextView
+                android:id="@+id/weather_state_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{city.mainWeather}"
+                app:layout_constraintEnd_toEndOf="@id/weather_state_icon_iv"
+                app:layout_constraintStart_toStartOf="@id/weather_state_icon_iv"
+                app:layout_constraintTop_toBottomOf="@id/weather_state_icon_iv"
+                tools:text="Sunny" />
+
+            <TextView
+                android:id="@+id/temperature_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:text="@{city.tempToString()}"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/country_tv"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/temperature" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</layout>

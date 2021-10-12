@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="temperature">%s<sup>o</sup>C</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wind_speed">Wind Sp: %s m/s</string>
+    <string name="pressure"><strong>Pres:</strong> %s hpa</string>
+    <string name="humidity">Hum: %s </string>
+</resources>
