@@ -3,6 +3,7 @@ package com.example.weatherapp.utilities
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.SuperscriptSpan
+import java.text.SimpleDateFormat
 
 object BaseUtil {
     /**
@@ -19,5 +20,10 @@ object BaseUtil {
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         return builder
+    }
+
+    fun convertMilliSecToDate(timeInMill: Long): String {
+        val spf = SimpleDateFormat("hh:mm:ss aa")
+        return spf.format(timeInMill)
     }
 }

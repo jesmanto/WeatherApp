@@ -190,7 +190,7 @@
                             android:id="@+id/sunrise_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="45%"
+                            android:text="@{weatherReport.sunriseTime()}"
                             app:layout_constraintTop_toTopOf="@id/sunrise"
                             app:layout_constraintEnd_toEndOf="parent"/>
                         <TextView
@@ -206,7 +206,7 @@
                             android:id="@+id/sunset_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="45%"
+                            android:text="@{weatherReport.sunsetTime()}"
                             app:layout_constraintTop_toTopOf="@id/sunset"
                             app:layout_constraintEnd_toEndOf="parent"/>
 

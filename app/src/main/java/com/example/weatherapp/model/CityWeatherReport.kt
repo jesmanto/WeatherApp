@@ -78,6 +78,14 @@ data class CityWeatherReport(
         return BaseUtil.covertTempToString(maxTemp)
     }
 
+    fun sunriseTime(): String{
+        return BaseUtil.convertMilliSecToDate(sunrise)
+    }
+
+    fun sunsetTime(): String{
+        return BaseUtil.convertMilliSecToDate(sunset)
+    }
+
     fun pressureToString() = pressure.toString()
     fun humidityToString() = "$humidity%"
     fun windSpeedToString() = windSpeed.toString()

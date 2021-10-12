@@ -13,7 +13,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad7dbd79-81da-47b6-ac7f-b2ef004e7954" name="Default Changelist" comment="" />
+    <list default="true" id="ad7dbd79-81da-47b6-ac7f-b2ef004e7954" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/weatherapp/model/CityWeatherReport.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/weatherapp/model/CityWeatherReport.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/weatherapp/utilities/BaseUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/weatherapp/utilities/BaseUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_single_city_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_single_city_detail.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
