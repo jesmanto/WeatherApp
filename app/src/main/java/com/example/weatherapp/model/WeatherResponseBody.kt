@@ -8,7 +8,7 @@ data class WeatherResponseBody(
     val clouds: Clouds,
     val cod: Int,
     val coord: Coord,
-    val dt: Int,
+    val dt: Long,
     val id: Int,
     val main: Main,
     val name: String,

@@ -22,8 +22,13 @@ object BaseUtil {
         return builder
     }
 
-    fun convertMilliSecToDate(timeInMill: Long): String {
+    fun convertMilliSecToTime(timeInMill: Long): String {
         val spf = SimpleDateFormat("hh:mm:ss aa")
+        return spf.format(timeInMill)
+    }
+
+    fun convertMilliSecToDate(timeInMill: Long): String {
+        val spf = SimpleDateFormat("yyyy,MMM dd")
         return spf.format(timeInMill)
     }
 }

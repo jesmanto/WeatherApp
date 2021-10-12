@@ -60,6 +60,15 @@
                         app:layout_constraintStart_toStartOf="@id/forecast_icon"
                         app:layout_constraintTop_toBottomOf="@id/forecast_icon"
                         tools:text="moderate rain" />
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{weatherReport.currentDate()}"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toTopOf="@id/forecast_icon"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
                     <TextView
                         android:id="@+id/temperature"
@@ -197,7 +206,7 @@
                             android:id="@+id/sunset"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Time of Sunrise"
+                            android:text="Time of Sunset"
                             android:layout_marginTop="20dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/sunrise" />

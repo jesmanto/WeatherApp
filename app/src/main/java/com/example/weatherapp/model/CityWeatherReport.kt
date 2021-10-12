@@ -1,11 +1,9 @@
 package com.example.weatherapp.model
 
 import android.os.Parcelable
-import android.text.style.SuperscriptSpan
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import android.text.SpannableStringBuilder
-import android.text.Spanned
 import com.example.weatherapp.utilities.BaseUtil
 import com.google.gson.annotations.Expose
 import kotlinx.parcelize.Parcelize
@@ -39,6 +37,8 @@ data class CityWeatherReport(
     @Expose
     val windSpeed: Double,
     @Expose
+    val date: Long,
+    @Expose
     val sunrise: Long,
     @Expose
     val sunset: Long
@@ -61,6 +61,7 @@ data class CityWeatherReport(
                 weatherResponseBody.main.pressure,
                 weatherResponseBody.main.humidity,
                 weatherResponseBody.wind.speed,
+                weatherResponseBody.dt,
                 weatherResponseBody.sys.sunrise,
                 weatherResponseBody.sys.sunset
             )
@@ -78,12 +79,16 @@ data class CityWeatherReport(
         return BaseUtil.covertTempToString(maxTemp)
     }
 
+    fun currentDate(): String {
+        return BaseUtil.convertMilliSecToDate(date)
+    }
+
     fun sunriseTime(): String{
-        return BaseUtil.convertMilliSecToDate(sunrise)
+        return BaseUtil.convertMilliSecToTime(sunrise)
     }
 
     fun sunsetTime(): String{
-        return BaseUtil.convertMilliSecToDate(sunset)
+        return BaseUtil.convertMilliSecToTime(sunset)
     }
 
     fun pressureToString() = pressure.toString()
