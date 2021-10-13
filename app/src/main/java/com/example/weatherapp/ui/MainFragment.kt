@@ -1,4 +1,4 @@
-package com.example.weatherapp
+package com.example.weatherapp.ui
 
 import android.os.Bundle
 import android.os.Handler
@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainFragment: Fragment() {
+class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
@@ -39,8 +39,7 @@ class MainFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentMainBinding.inflate(inflater,container,false)
-//        recyclerViewAdapter = WeatherListAdapter()
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
         recyclerView = binding.cityListRecyclerView
         recyclerView.adapter = recyclerViewAdapter
         return binding.root
@@ -49,8 +48,8 @@ class MainFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getWeatherInformationByCity()
-        viewModel.doneFetching.observe(viewLifecycleOwner){
-            if (it==true){
+        viewModel.doneFetching.observe(viewLifecycleOwner) {
+            if (it == true) {
                 handleDbRequest()
             }
         }
@@ -67,7 +66,7 @@ class MainFragment: Fragment() {
     /**
      * Observe the live data from database when the city loop is over
      */
-    private fun handleDbRequest(){
+    private fun handleDbRequest() {
         val handler = Handler(Looper.getMainLooper())
         handler.post {
             (viewModel.getWeatherReports().observe(viewLifecycleOwner, {

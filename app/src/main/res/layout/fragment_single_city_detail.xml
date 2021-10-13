@@ -16,19 +16,21 @@
         android:layout_height="match_parent"
         android:background="@drawable/cloud_bg"
         android:orientation="vertical"
-        tools:context=".SingleCityDetailFragment">
+        tools:context=".ui.SingleCityDetailFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="2dp"
             android:minHeight="?attr/actionBarSize">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{weatherReport.location()}"
-                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 tools:text="Lagos, NG" />
         </androidx.appcompat.widget.Toolbar>
@@ -37,190 +39,196 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/forecast_icon"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:imageUrl="@{weatherReport.weatherIcon}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/forecast_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{weatherReport.weatherDescription}"
+                    android:textAllCaps="true"
+                    app:layout_constraintEnd_toEndOf="@id/forecast_icon"
+                    app:layout_constraintStart_toStartOf="@id/forecast_icon"
+                    app:layout_constraintTop_toBottomOf="@id/forecast_icon"
+                    tools:text="moderate rain" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@{weatherReport.currentDate()}"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/forecast_icon" />
+
+                <TextView
+                    android:id="@+id/temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{weatherReport.tempToString}"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="@id/forecast_icon"
+                    app:layout_constraintStart_toStartOf="@id/forecast_icon"
+                    app:layout_constraintTop_toBottomOf="@id/forecast_text" />
+
+                <LinearLayout
+                    android:id="@+id/weather_condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/temperature">
+
+                    <TextView
+                        android:id="@+id/pressure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{String.format(@string/pressure,weatherReport.pressureToString)}"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/humidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{String.format(@string/humidity,weatherReport.humidityToString)}"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/speed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{String.format(@string/wind_speed,weatherReport.windSpeedToString)}"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/more_details_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/white"
+                    android:padding="5dp"
+                    android:text="More Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/weather_condition" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#6BFFFFFF"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/more_details_tv">
 
-                    <ImageView
-                        android:id="@+id/forecast_icon"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        app:imageUrl="@{weatherReport.weatherIcon}"
-                        app:layout_constraintEnd_toEndOf="parent"
+                    <TextView
+                        android:id="@+id/min_temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Minimum Temperature"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/forecast_text"
+                        android:id="@+id/min_temp_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{weatherReport.weatherDescription}"
-                        android:textAllCaps="true"
-                        app:layout_constraintEnd_toEndOf="@id/forecast_icon"
-                        app:layout_constraintStart_toStartOf="@id/forecast_icon"
-                        app:layout_constraintTop_toBottomOf="@id/forecast_icon"
-                        tools:text="moderate rain" />
+                        android:text="@{weatherReport.minTempToString()}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/min_temp" />
+
                     <TextView
-                        android:id="@+id/date"
+                        android:id="@+id/max_temp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{weatherReport.currentDate()}"
-                        android:layout_marginEnd="10dp"
-                        android:textColor="@color/black"
-                        app:layout_constraintTop_toTopOf="@id/forecast_icon"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        android:layout_marginTop="20dp"
+                        android:text="Maximum Temperature"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/min_temp" />
 
                     <TextView
-                        android:id="@+id/temperature"
+                        android:id="@+id/max_temp_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{weatherReport.tempToString}"
-                        android:textSize="30sp"
-                        app:layout_constraintEnd_toEndOf="@id/forecast_icon"
-                        app:layout_constraintStart_toStartOf="@id/forecast_icon"
-                        app:layout_constraintTop_toBottomOf="@id/forecast_text" />
-
-                    <LinearLayout
-                        android:id="@+id/weather_condition"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintTop_toBottomOf="@id/temperature">
-
-                        <TextView
-                            android:id="@+id/pressure"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:layout_weight="1"
-                            android:text="@{String.format(@string/pressure,weatherReport.pressureToString)}"
-                            android:textAlignment="center" />
-
-                        <TextView
-                            android:id="@+id/humidity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:layout_weight="1"
-                            android:text="@{String.format(@string/humidity,weatherReport.humidityToString)}"
-                            android:textAlignment="center" />
-
-                        <TextView
-                            android:id="@+id/speed"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:layout_weight="1"
-                            android:text="@{String.format(@string/wind_speed,weatherReport.windSpeedToString)}"
-                            android:textAlignment="center" />
-
-                    </LinearLayout>
+                        android:text="@{weatherReport.maxTempToString()}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/max_temp" />
 
                     <TextView
-                        android:id="@+id/more_details_tv"
-                        android:layout_width="match_parent"
+                        android:id="@+id/main_temp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:padding="5dp"
-                        android:text="More Details"
                         android:layout_marginTop="20dp"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintTop_toBottomOf="@id/weather_condition" />
+                        android:text="Main Temperature"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/max_temp" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/main_temp_value"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#6BFFFFFF"
-                        android:padding="10dp"
+                        android:text="@{weatherReport.tempToString()}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/main_temp" />
+
+                    <TextView
+                        android:id="@+id/sunrise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        app:layout_constraintTop_toBottomOf="@id/more_details_tv">
+                        android:text="Time of Sunrise"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/main_temp" />
 
-                        <TextView
-                            android:id="@+id/min_temp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Minimum Temperature"
-                            android:layout_marginTop="20dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/sunrise_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{weatherReport.sunriseTime()}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/sunrise" />
 
-                        <TextView
-                            android:id="@+id/min_temp_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{weatherReport.minTempToString()}"
-                            app:layout_constraintTop_toTopOf="@id/min_temp"
-                            app:layout_constraintEnd_toEndOf="parent"/>
-                        <TextView
-                            android:id="@+id/max_temp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Maximum Temperature"
-                            android:layout_marginTop="20dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/min_temp" />
+                    <TextView
+                        android:id="@+id/sunset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Time of Sunset"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sunrise" />
 
-                        <TextView
-                            android:id="@+id/max_temp_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{weatherReport.maxTempToString()}"
-                            app:layout_constraintTop_toTopOf="@id/max_temp"
-                            app:layout_constraintEnd_toEndOf="parent"/>
-                        <TextView
-                            android:id="@+id/main_temp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Main Temperature"
-                            android:layout_marginTop="20dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/max_temp" />
+                    <TextView
+                        android:id="@+id/sunset_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{weatherReport.sunsetTime()}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/sunset" />
 
-                        <TextView
-                            android:id="@+id/main_temp_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{weatherReport.tempToString()}"
-                            app:layout_constraintTop_toTopOf="@id/main_temp"
-                            app:layout_constraintEnd_toEndOf="parent"/>
-                        <TextView
-                            android:id="@+id/sunrise"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Time of Sunrise"
-                            android:layout_marginTop="20dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/main_temp" />
-
-                        <TextView
-                            android:id="@+id/sunrise_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{weatherReport.sunriseTime()}"
-                            app:layout_constraintTop_toTopOf="@id/sunrise"
-                            app:layout_constraintEnd_toEndOf="parent"/>
-                        <TextView
-                            android:id="@+id/sunset"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Time of Sunset"
-                            android:layout_marginTop="20dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/sunrise" />
-
-                        <TextView
-                            android:id="@+id/sunset_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{weatherReport.sunsetTime()}"
-                            app:layout_constraintTop_toTopOf="@id/sunset"
-                            app:layout_constraintEnd_toEndOf="parent"/>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </layout>

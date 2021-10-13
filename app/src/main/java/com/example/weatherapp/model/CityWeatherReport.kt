@@ -42,7 +42,7 @@ data class CityWeatherReport(
     val sunrise: Long,
     @Expose
     val sunset: Long
-): Parcelable {
+) : Parcelable {
     object ModelMapper {
         /**
          * Helps to map the
@@ -83,11 +83,11 @@ data class CityWeatherReport(
         return BaseUtil.convertMilliSecToDate(date)
     }
 
-    fun sunriseTime(): String{
+    fun sunriseTime(): String {
         return BaseUtil.convertMilliSecToTime(sunrise)
     }
 
-    fun sunsetTime(): String{
+    fun sunsetTime(): String {
         return BaseUtil.convertMilliSecToTime(sunset)
     }
 
