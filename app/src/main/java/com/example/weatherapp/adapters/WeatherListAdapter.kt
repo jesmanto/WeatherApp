@@ -24,7 +24,7 @@ class WeatherListAdapter @Inject constructor() : RecyclerView.Adapter<WeatherLis
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
-        return WeatherViewHolder(CityItemLayoutBinding.inflate(LayoutInflater.from(parent.context)))
+        return WeatherViewHolder(CityItemLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {

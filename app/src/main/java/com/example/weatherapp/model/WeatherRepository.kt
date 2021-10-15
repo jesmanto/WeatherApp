@@ -5,7 +5,11 @@ import androidx.lifecycle.LiveData
 import com.example.weatherapp.db.WeatherAppDb
 import com.example.weatherapp.services.api.WeatherApiService
 import javax.inject.Inject
-
+/**
+ * This class handles the network calls to the server.
+ * It's a channel with which the DB interacts with the
+ * remote server
+ */
 class WeatherRepository @Inject constructor(
     private val weatherDb: WeatherAppDb,
     private val weatherApiService: WeatherApiService
@@ -24,7 +28,7 @@ class WeatherRepository @Inject constructor(
     ) {
         try {
             val response = weatherApiService.getWeatherInformationByCity(
-                city, "6e76055f1d172fe00a7aa9edd1f0ebf5"
+                city, "15a5c5ed0b6bc631dffa937a0cac5519"
             ).execute()
 
             if (response.isSuccessful) {

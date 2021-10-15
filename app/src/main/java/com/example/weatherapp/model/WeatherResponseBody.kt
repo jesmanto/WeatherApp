@@ -1,8 +1,10 @@
 package com.example.weatherapp.model
 
-import androidx.room.Entity
-
-
+/**
+ * This is the model of the weather forecast response payload
+ * coming from the server. This is the object that will later
+ * be mapped to the main weather forecast object
+ */
 data class WeatherResponseBody(
     val base: String,
     val clouds: Clouds,
@@ -18,4 +20,9 @@ data class WeatherResponseBody(
     val visibility: Int,
     val weather: List<Weather>,
     val wind: Wind
-)
+) {
+    /**
+     * Builds the weather icon URL link using the weather icon
+     */
+    fun getImageUrl() = "http://openweathermap.org/img/wn/${weather[0].icon}@2x.png"
+}

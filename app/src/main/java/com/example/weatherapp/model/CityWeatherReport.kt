@@ -5,9 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import android.text.SpannableStringBuilder
 import com.example.weatherapp.utilities.BaseUtil
+import com.example.weatherapp.utilities.BaseUtil.getImageUrl
 import com.google.gson.annotations.Expose
 import kotlinx.parcelize.Parcelize
 
+/**
+ * This is the model of the weather forecast object
+ */
 @Parcelize
 @Entity(tableName = "cities_weather_report")
 data class CityWeatherReport(
@@ -45,7 +49,8 @@ data class CityWeatherReport(
 ) : Parcelable {
     object ModelMapper {
         /**
-         * Helps to map the
+         * Helps to map the response body to the main data class
+         * @param weatherResponseBody
          */
         fun fromWeatherResponseBody(weatherResponseBody: WeatherResponseBody) =
             CityWeatherReport(
@@ -54,7 +59,7 @@ data class CityWeatherReport(
                 weatherResponseBody.base,
                 weatherResponseBody.weather[0].main,
                 weatherResponseBody.weather[0].description,
-                "http://openweathermap.org/img/wn/${weatherResponseBody.weather[0].icon}@2x.png",
+                weatherResponseBody.getImageUrl(),
                 weatherResponseBody.main.temp,
                 weatherResponseBody.main.temp_min,
                 weatherResponseBody.main.temp_max,
@@ -67,32 +72,19 @@ data class CityWeatherReport(
             )
     }
 
-    fun tempToString(): SpannableStringBuilder {
-        return BaseUtil.covertTempToString(temperature)
-    }
+    /**
+     * This block contains all functions needed to access the
+     * weather forecast values of a given city in the xml file
+     */
 
-    fun minTempToString(): SpannableStringBuilder {
-        return BaseUtil.covertTempToString(minTemp)
-    }
-
-    fun maxTempToString(): SpannableStringBuilder {
-        return BaseUtil.covertTempToString(maxTemp)
-    }
-
-    fun currentDate(): String {
-        return BaseUtil.convertMilliSecToDate(date)
-    }
-
-    fun sunriseTime(): String {
-        return BaseUtil.convertMilliSecToTime(sunrise)
-    }
-
-    fun sunsetTime(): String {
-        return BaseUtil.convertMilliSecToTime(sunset)
-    }
-
-    fun pressureToString() = pressure.toString()
-    fun humidityToString() = "$humidity%"
-    fun windSpeedToString() = windSpeed.toString()
-    fun location() = "$city, $country"
+    fun tempToString() = BaseUtil.covertTempToString(temperature) /* Get main temperature */
+    fun minTempToString() = BaseUtil.covertTempToString(minTemp) /* Get minimum temperature */
+    fun maxTempToString() = BaseUtil.covertTempToString(maxTemp) /* Get maximum temperature */
+    fun currentDate() = BaseUtil.convertMilliSecToDate(date) /* Get current date */
+    fun sunriseTime() = BaseUtil.convertMilliSecToTime(sunrise) /* Get sunrise time */
+    fun sunsetTime() = BaseUtil.convertMilliSecToTime(sunset) /* Get sunset time */
+    fun pressureToString() = pressure.toString() /* Get weather pressure */
+    fun humidityToString() = "$humidity%" /* Get weather humidity */
+    fun windSpeedToString() = windSpeed.toString() /* Get wind speed */
+    fun location() = "$city, $country" /* Get full location */
 }

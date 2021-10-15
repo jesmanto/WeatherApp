@@ -29,11 +29,11 @@ class MainFragment : Fragment() {
 
     private var _weatherReportList = listOf<CityWeatherReport>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
-
+    /**
+     * Called to have the fragment instantiate its user interface view.
+     * This is optional, and non-graphical fragments can return null.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,9 +45,14 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Called immediately after onCreateView has returned,
+     * but before any saved state has been restored in to the view.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getWeatherInformationByCity()
+
+        // Checking for when the final network call is made
         viewModel.doneFetching.observe(viewLifecycleOwner) {
             if (it == true) {
                 handleDbRequest()
@@ -76,5 +81,13 @@ class MainFragment : Fragment() {
                 }
             }))
         }
+    }
+
+    /**
+     * Called when the fragment is no longer in use.
+     */
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
