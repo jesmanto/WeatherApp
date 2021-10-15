@@ -22,3 +22,8 @@ WeatherApp Codebase is designed to enable easy flow and collaboration among andr
 ## Contribution
 
 This Codebase is entirely developed by Jesse Okoro, Android Engineer. 
+
+## Screen Shots
+
+<img width="326" alt="Screen Shot 2021-10-15 at 6 14 05 PM" src="https://user-images.githubusercontent.com/27390903/137527213-bdad261a-683d-43f4-9b81-cf9ed40a945b.png"> | <img width="326" alt="Screen Shot 2021-10-15 at 6 14 27 PM" src="https://user-images.githubusercontent.com/27390903/137527269-20ee5071-72ca-420b-ae34-6a252bc54c4b.png">
+
