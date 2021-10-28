@@ -12,6 +12,6 @@ interface WeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addWeatherReport(cityWeatherReport: CityWeatherReport)
 
-    @Query("SELECT * FROM cities_weather_report ORDER BY city ASC ")
+    @Query("SELECT * FROM cities_weather_report ORDER BY cityName ASC ")
     fun fetchWeatherReportsFromDb(): LiveData<List<CityWeatherReport>>
 }

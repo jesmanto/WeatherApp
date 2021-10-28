@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.weatherapp.db.WeatherAppDb
 import com.example.weatherapp.services.api.WeatherApiService
+import timber.log.Timber
 import javax.inject.Inject
 /**
  * This class handles the network calls to the server.
@@ -36,17 +37,16 @@ class WeatherRepository @Inject constructor(
                 if (res != null) {
                     val cityWeatherReport =
                         CityWeatherReport.ModelMapper.fromWeatherResponseBody(res)
-
                     weatherDao.addWeatherReport(cityWeatherReport)
                 }
-                Log.d("RESULT", "$res")
+                Timber.d( "$res")
             } else {
-                Log.d("RESULT", response.message())
+                Timber.d(response.message())
             }
 
         } catch (e: Throwable) {
             e.printStackTrace()
-            Log.d("SERVER_ERROR", "An error just occurred")
+            Timber.d( "A SERVER_ERROR error just occurred")
         }
     }
 }

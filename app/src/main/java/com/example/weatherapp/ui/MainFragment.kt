@@ -74,7 +74,7 @@ class MainFragment : Fragment() {
     private fun handleDbRequest() {
         val handler = Handler(Looper.getMainLooper())
         handler.post {
-            (viewModel.getWeatherReports().observe(viewLifecycleOwner, {
+            (viewModel.getWeatherReports.observe(viewLifecycleOwner, {
                 if (it != null) {
                     recyclerViewAdapter.loadCities(it)
                     _weatherReportList = it

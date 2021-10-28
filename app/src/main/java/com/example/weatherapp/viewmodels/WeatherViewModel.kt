@@ -1,8 +1,10 @@
 package com.example.weatherapp.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.weatherapp.model.CityWeatherReport
 import com.example.weatherapp.model.WeatherRepository
 import com.example.weatherapp.utilities.DataUtils.cities
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -39,5 +41,5 @@ class WeatherViewModel @Inject constructor(
     /**
      * Fetch weather reports for all cities from database
      */
-    fun getWeatherReports() = weatherRepository.readAllData
+    val getWeatherReports: LiveData<List<CityWeatherReport>> = weatherRepository.readAllData
 }

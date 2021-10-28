@@ -17,7 +17,7 @@ import kotlinx.parcelize.Parcelize
 data class CityWeatherReport(
     @PrimaryKey(autoGenerate = false)
     @Expose
-    val city: String,
+    val cityName: String,
     @Expose
     val country: String,
     @Expose
@@ -86,5 +86,5 @@ data class CityWeatherReport(
     fun pressureToString() = pressure.toString() /* Get weather pressure */
     fun humidityToString() = "$humidity%" /* Get weather humidity */
     fun windSpeedToString() = windSpeed.toString() /* Get wind speed */
-    fun location() = "$city, $country" /* Get full location */
+    fun location() = "$cityName, $country" /* Get full location */
 }
